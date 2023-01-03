@@ -1,4 +1,4 @@
-﻿public interface IBasicEnemy: IDamagable
+﻿public interface IBasicEnemy
 {
     void Move();
     void DealDamage(float damage);

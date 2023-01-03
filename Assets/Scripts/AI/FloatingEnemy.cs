@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatingEnemy : MonoBehaviour, IBasicEnemy
+public class FloatingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
 {
     [SerializeField]
     private float _speed;
@@ -36,6 +36,7 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
 
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log("Taking Damage");
         DealDamage(50);
     }
 
@@ -83,6 +84,5 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
         _endPoint = _startPoint;
         _startPoint = temp;
         _reached = true;
-        Debug.Log(_endPoint + "      "+ _startPoint);
     }
 }

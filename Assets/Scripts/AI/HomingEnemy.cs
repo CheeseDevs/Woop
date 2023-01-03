@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomingEnemy : MonoBehaviour, IBasicEnemy
+public class HomingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
 {
     private float _hp;
 
@@ -37,6 +37,6 @@ public class HomingEnemy : MonoBehaviour, IBasicEnemy
 
     public void TakeDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Taking Damage");
     }
 }

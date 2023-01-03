@@ -29,11 +29,20 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
 
         }
+        Vector3 move = new Vector3();
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+            move = transform.right * x + transform.forward * z;
+        }
+        else
+        {
+            move = Vector3.Lerp(move, Vector3.zero, 20 * Time.deltaTime);
+        }
+
 
         controller.Move(move * speed * Time.deltaTime);
 
