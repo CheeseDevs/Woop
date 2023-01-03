@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    private Vector3 _inputVector;
+    private Vector3 _momentVector;
+
     bool isGrounded;
 
     // Update is called once per frame
@@ -42,5 +45,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+        //GetInput();
+        //MovePlayer();
     }
+
+
+
 }
