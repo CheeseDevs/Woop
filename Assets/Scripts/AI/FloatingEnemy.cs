@@ -86,15 +86,3 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
         Debug.Log(_endPoint + "      "+ _startPoint);
     }
 }
-
-public interface IBasicEnemy
-{
-    void Move();
-    void DealDamage(float damage);
-    void Die();
-}
-
-public interface IDamagable
-{
-    void TakeDamage(float damage);
-}
