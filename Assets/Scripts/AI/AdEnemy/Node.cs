@@ -41,6 +41,47 @@ namespace BT
             _dataContext[key] = value;
         }
 
+        public object GetDAta(string key)
+        {
+            object value = null;
+            if (_dataContext.TryGetValue(key, out value))
+            {
+                return value;
+            }
+
+            Node node = parent;
+            while (node != null)
+            {
+                value = node.GetDAta(key);
+                if (value != null)
+                {
+                    return value;
+                }
+                node = node.parent;
+            }
+            return null;
+        }
+
+        public bool ClearData(string key)
+        {
+            if (_dataContext.ContainsKey(key))
+            {
+                _dataContext.Remove(key);
+                return true;
+            }
+
+            Node node = parent;
+            while (node != null)
+            {
+                bool cleared = node.ClearData(key);
+                if (cleared)
+                {
+                    return true;
+                }
+                node = node.parent;
+            }
+            return false;
+        }
 
         public virtual NodeState Evaluate() => NodeState.FAILURE;
 
