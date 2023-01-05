@@ -36,19 +36,31 @@ public class GunController : MonoBehaviour
 
     void Fire()
     {
-        foreach(var damagable in enemyPool.enemypool)
+        //bullet
+        Debug.Log("Fire method called");
+
+        if (enemyPool != null && enemyPool.enemypool != null)
         {
-            damagable.GetComponent<IDamagable>().TakeDamage(3);
+            foreach(var damagable in enemyPool.enemypool)
+            {
+                if (damagable != null)
+                {
+                    damagable.GetComponent<IDamagable>().TakeDamage(3);
+                }
+            }
         }
 
         _nextTimeToShoot = Time.time + _fireRate;
-    }
+    }                                                  
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            enemyPool.AddItem(other.gameObject);
+            if (enemyPool != null)
+            {
+                enemyPool.AddItem(other.gameObject);
+            }
         }
     }
 
@@ -56,7 +68,10 @@ public class GunController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            enemyPool.RemoveItem(other.gameObject);
+            if (enemyPool != null)
+            {
+                enemyPool.RemoveItem(other.gameObject);
+            }
         }
     }
 }

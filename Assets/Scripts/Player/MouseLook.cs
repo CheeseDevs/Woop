@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-
     public float mouseSensitivity = 1.5f;
     public float smoothing = 10f;
 
