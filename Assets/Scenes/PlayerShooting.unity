@@ -816,8 +816,8 @@ GameObject:
   m_Component:
   - component: {fileID: 867854265}
   - component: {fileID: 867854264}
-  - component: {fileID: 867854263}
-  - component: {fileID: 867854262}
+  - component: {fileID: 867854268}
+  - component: {fileID: 867854267}
   - component: {fileID: 867854266}
   m_Layer: 0
   m_Name: Player
@@ -826,42 +826,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &867854262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867854261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fec433046dcc67a4eb20c2c2036696f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 1.5
-  smoothing: 10
-  playerBody: {fileID: 0}
---- !u!114 &867854263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867854261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100e1de10d9cfd44187245f581dd492a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 867854264}
-  speed: 12
-  gravity: -18
-  jumpHeight: 2
-  groundCheck: {fileID: 114951011}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!143 &867854264
 CharacterController:
   m_ObjectHideFlags: 0
@@ -911,11 +875,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 867854261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720c7f03accae4c4d9db02452ed0f43b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f4af4dcb99d654408a547c75a5360c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 1.5
+  smoothing: 10
+  playerBody: {fileID: 2087621950}
+--- !u!114 &867854267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867854261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15dbf9b010bf1fe49b018832f9819ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   armor: 50
+--- !u!114 &867854268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867854261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ec1f54d55ccae4d8926cc280f91ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 867854264}
+  speed: 10
+  gravity: -9.81
+  jumpHeight: 3
+  groundCheck: {fileID: 1327534902}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &899009502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,9 +1156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec433046dcc67a4eb20c2c2036696f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 1.5
-  smoothing: 10
-  playerBody: {fileID: 867854265}
 --- !u!81 &1206854034
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2283,7 +2280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087621950}
   - component: {fileID: 2087621952}
-  - component: {fileID: 2087621951}
+  - component: {fileID: 2087621953}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -2306,24 +2303,6 @@ Transform:
   m_Father: {fileID: 867854265}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2087621951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087621949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9649cb35e01c074f848573e22776f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gunTrigger: {fileID: 2087621952}
-  _range: 20
-  _verticalRange: 20
-  _fireRate: 1
-  _nextTimeToShoot: 0
-  enemyPool: {fileID: 309762858}
 --- !u!65 &2087621952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2337,6 +2316,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2087621953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087621949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256f1b5803d5f56499f9c6bb8c6455c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gunTrigger: {fileID: 2087621952}
+  _range: 20
+  _verticalRange: 20
+  _fireRate: 1
+  _nextTimeToShoot: 0
+  enemyPool: {fileID: 309762858}
 --- !u!1 &2090828072
 GameObject:
   m_ObjectHideFlags: 0

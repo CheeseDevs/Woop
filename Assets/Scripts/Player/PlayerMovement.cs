@@ -57,7 +57,4 @@ public class PlayerMovement : MonoBehaviour
         //GetInput();
         //MovePlayer();
     }
-
-
-
 }

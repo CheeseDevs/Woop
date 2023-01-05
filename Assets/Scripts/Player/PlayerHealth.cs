@@ -6,14 +6,14 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health = 100;
     public int armor = 50;
-    public slider healthBar;
-    public slider armorBar;
+    //public slider healthBar;
+    //public slider armorBar;
 
     void Update()
     {
         // Update the value of the health and armor bars:
-        healthBar.value = health;
-        armorBar.value = armor;
+       // healthBar.value = health;
+        //armorBar.value = armor;
     }
 
     public void TakeDamage(int damage)
