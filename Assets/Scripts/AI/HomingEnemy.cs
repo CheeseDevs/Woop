@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class HomingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
 {
-    private float _hp;
+    //private float _hp;
+    private float health;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void TakeDamage(int damage)
+    {   
+        Debug.Log("taking damage");
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void DealDamage(float damage)
     {
@@ -35,8 +32,8 @@ public class HomingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
         throw new System.NotImplementedException();
     }
 
-    public void TakeDamage(float damage)
-    {
-        Debug.Log("Taking Damage");
-    }
+    //public void TakeDamage(float damage)
+    //{
+    //    Debug.Log("Taking Damage");
+    //}
 }

@@ -5,24 +5,23 @@ using UnityEngine;
 public class AdEnemy : MonoBehaviour, IDamagable
 {
     [SerializeField]
-    private float _hp = 50f;
+    //private float _hp = 50f;
+    private float health;
 
-
-    public void TakeDamage(float damage)
-    {
-        _hp -= damage;
+    public void TakeDamage(int damage)
+    {   
         Debug.Log("taking damage");
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //public void TakeDamage(float damage)
+    //{
+    //    _hp -= damage;
+    //    Debug.Log("taking damage");
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

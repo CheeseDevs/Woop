@@ -18,6 +18,7 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
     private float _duration;
     private bool _reached = false;
 
+    public int health = 100;
 
     // Start is called before the first frame update
 
@@ -54,6 +55,7 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
         }
     }
 
+
     public void Move()
     {
         if (_reached)
@@ -64,9 +66,18 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy, IDamagable
 
     }
 
-    public void TakeDamage(float damage)
+    //public void TakeDamage(float damage)
+   // {
+   //     _hp = _hp - damage;
+   // }
+
+    public void TakeDamage(int damage)
     {
-        _hp = _hp - damage;
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator RepeatLerp()
