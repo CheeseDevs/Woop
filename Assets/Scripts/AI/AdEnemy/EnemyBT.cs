@@ -8,6 +8,8 @@ public class EnemyBT : BT.Tree
     public Transform[] waypoints;
 
     public static float speed = 2f;
+    public static float FOVrange = 6f;
+
 
 
     // Start is called before the first frame update
@@ -15,7 +17,6 @@ public class EnemyBT : BT.Tree
     protected override Node SetupTree()
     {
         Node root = new TaskPatrol(transform, waypoints);
-        Debug.Log("tree");
         return root;
     }
 }
