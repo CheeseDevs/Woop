@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     public Rigidbody2D theRB;
 
     public float moveSpeed = 5f;
@@ -13,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
 
     public float mouseSensitivity = 1f;
     public Transform viewCam;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void start(){
 
     }
