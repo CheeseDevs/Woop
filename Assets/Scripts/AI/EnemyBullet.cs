@@ -34,5 +34,7 @@ public class EnemyBullet : MonoBehaviour
         {
             Debug.Log("hit player");
         }
+        Destroy(this);
+        
     }
 }
