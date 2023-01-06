@@ -20,6 +20,7 @@ public class TaskPatrol : Node
         _waypoints = waypoints;
     }
 
+
     public override NodeState Evaluate()
     {
         if (_waiting)
@@ -51,5 +52,6 @@ public class TaskPatrol : Node
             state = NodeState.RUNNING;
             return state;
        }
+
 }
 
