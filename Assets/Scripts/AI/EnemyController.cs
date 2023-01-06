@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour, IDamagable
         if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) <= playerRange)
         {
             Vector3 playerDir = PlayerMovement.instance.transform.position - transform.position;
-            
+            rb.velocity = playerDir * speed;
         }
     }
 }
