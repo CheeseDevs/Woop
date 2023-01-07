@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 {
 
     [SerializeField]
-    private float _curretntHealth;
+    private float _currentHealth;
     [SerializeField]
     private float _maxHealth = 100f;
 
@@ -31,80 +31,101 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public int currentAmmo;
     public Animator gunAnim;
 
+    [SerializeField]
+    public static bool isDead;
 
-
+    public GameObject deathMenu;
 
     private void Awake()
     {
         instance = this;
+        isDead = false;
     }
 
     void start(){
-
-        _curretntHealth = _maxHealth;
+       
+        _currentHealth = _maxHealth;
+        
         Cursor.lockState = CursorLockMode.Locked;
 
     }
     void Update()
     {       
-        
-        //Player Movement
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector3 moveHorizontal = transform.up * -moveInput.x;
-        Vector3 moveVertical = transform.right * moveInput.y;
-        theRB.velocity = (moveHorizontal+moveVertical) * moveSpeed;
-           //Camera Movement 
-        moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
-        viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
+        Debug.Log(_currentHealth);
+        if (!PauseMenu.Paused && !isDead)
+        {
+            //Player Movement
+            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Vector3 moveHorizontal = transform.up * -moveInput.x;
+            Vector3 moveVertical = transform.right * moveInput.y;
+            theRB.velocity = (moveHorizontal+moveVertical) * moveSpeed;
+            //Camera Movement 
+            moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
+            viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
+            
             //Shooting
-        
-        
-        if(Input.GetMouseButtonDown(0))
-        {   
-            if(currentAmmo > 0)
-            {
-                Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+            if(Input.GetMouseButtonDown(0))
+            {   
+                if(currentAmmo > 0)
                 {
-                    Debug.Log("Shooting at" + hit.transform.name);
-                    Instantiate(bulletImpact, hit.point, transform.rotation);
-                    if (hit.transform.CompareTag("Enemy"))
+                    Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
+                        Debug.Log("Shooting at" + hit.transform.name);
+                        Instantiate(bulletImpact, hit.point, transform.rotation);
+                        if (hit.transform.CompareTag("Enemy"))
+                        {
+                            hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
+                        }
                     }
+                    else
+                    {
+                        Debug.Log("Nothing");
+                    }
+                    currentAmmo--;
+                    gunAnim.SetTrigger("Shoot");
                 }
-                else
-                {
-                    Debug.Log("Nothing");
-                }
-                currentAmmo--;
-                gunAnim.SetTrigger("Shoot");
+            }
+
+            if (_currentHealth <= 0)
+            {
+                isDead = true;  
             }
         }
+        else if (isDead)
+        {
+            theRB.velocity = Vector3.zero;
+            deathMenu.GetComponent<DeathMenu>().toggleDeathMenu(); 
+        }
+        else 
+        {
+            theRB.velocity = Vector3.zero;
+        }
+        
 
     }
 
     public void TakeDamage(float damage)
     {
-            if (_curretntHealth > 0)
-            {
-                _curretntHealth = _curretntHealth - damage;
-            }
-            else
-            {
-                Debug.Log("dead");
-            }
+        if (_currentHealth > 0)
+        {
+            _currentHealth = _currentHealth - damage;
+        }
+        else
+        {
+            Debug.Log("dead");
+        }
     }
 
     public void AddHealth(float heal)
     {
         for (int i = 0; i < heal; i++)
         {
-            if (_curretntHealth <= _maxHealth)
+            if (_currentHealth <= _maxHealth)
             {
-                _curretntHealth = _curretntHealth + 1;
+                _currentHealth = _currentHealth + 1;
             }
             else
             {
