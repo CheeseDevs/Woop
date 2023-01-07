@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public static bool isDead;
 
     public GameObject deathMenu;
+    public GameObject hud;
 
     private void Awake()
     {
@@ -112,6 +113,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         if (_currentHealth > 0)
         {
             _currentHealth = _currentHealth - damage;
+            hud.
         }
         else
         {
