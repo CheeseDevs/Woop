@@ -27,10 +27,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void start(){
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
     void Update()
-    {       //Player Movement
+    {       
+        
+        //Player Movement
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector3 moveHorizontal = transform.up * -moveInput.x;
         Vector3 moveVertical = transform.right * moveInput.y;
@@ -40,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
         viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
             //Shooting
+        
+        
         if(Input.GetMouseButtonDown(0))
         {   
             if(currentAmmo > 0)
