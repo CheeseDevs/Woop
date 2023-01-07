@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatingEnemy : MonoBehaviour, IBasicEnemy
+public class FloatingEnemy : MonoBehaviour, IDamagable
 {
     [SerializeField]
     private float _speed;
@@ -18,6 +19,17 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
     private float _duration;
     private bool _reached = false;
 
+    [SerializeField]
+    private bool _shouldShoot;
+    [SerializeField]
+    private float _fireRate;
+    [SerializeField]
+    private float _shotCounter;
+    [SerializeField]
+    private GameObject _bullet;
+    [SerializeField]
+    public Transform _firePoint;
+
 
     // Start is called before the first frame update
 
@@ -32,25 +44,26 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
     void Update()
     {
         Move();
+        Shoot();
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        DealDamage(50);
+        if (collision.transform.CompareTag("Player"))
+        {
+            DealDamage(30);
+        }
     }
 
     // IBasicEnemy
     public void DealDamage(float damage)
     {
-        Debug.Log("damaging");
+        PlayerMovement.instance.TakeDamage(damage);
     }
 
     public void Die()
     {
-        if (_hp <= 0)
-        {
-            Destroy(this);
-        }
+        Destroy(gameObject);
     }
 
     public void Move()
@@ -65,7 +78,15 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
 
     public void TakeDamage(float damage)
     {
-        _hp = _hp - damage;
+        
+        if (_hp <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            _hp = _hp - damage;
+        }
     }
 
     IEnumerator RepeatLerp()
@@ -85,4 +106,19 @@ public class FloatingEnemy : MonoBehaviour, IBasicEnemy
         _reached = true;
         Debug.Log(_endPoint + "      "+ _startPoint);
     }
+
+    public void Shoot()
+    {
+        if (_shouldShoot)
+        {
+            _shotCounter -= Time.deltaTime;
+            if (_shotCounter <= 0)
+            {
+                Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+                _shotCounter = _fireRate;
+            }
+        }
+
+    }
+
 }
