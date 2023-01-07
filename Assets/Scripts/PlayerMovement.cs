@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                     Instantiate(bulletImpact, hit.point, transform.rotation);
                     if (hit.transform.CompareTag("Enemy"))
                     {
-                        hit.transform.parent.GetComponent<EnemyController>().TakeDamage(30);
+                        hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
                     }
                 }
                 else

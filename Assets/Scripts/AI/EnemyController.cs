@@ -25,14 +25,6 @@ public class EnemyController : MonoBehaviour, IDamagable
     public Rigidbody2D rb;
 
 
-
-
-    public void DealDamage(float damage)
-    {
-
-    }
-
-
     public void TakeDamage(float damage)
     {
         for (int i = 0; i < damage; i++)
@@ -63,6 +55,21 @@ public class EnemyController : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
+        Move();
+    }
+
+    public void Shoot()
+    {
+        _shotCounter -= Time.deltaTime;
+        if (_shotCounter <= 0)
+        {
+            Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+            _shotCounter = _fireRate;
+        }
+    }
+
+    public void Move()
+    {
         if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) <= playerRange)
         {
             Vector3 playerDir = PlayerMovement.instance.transform.position - transform.position;
@@ -70,12 +77,7 @@ public class EnemyController : MonoBehaviour, IDamagable
 
             if (_shouldShoot)
             {
-                _shotCounter -= Time.deltaTime;
-                if (_shotCounter <= 0)  
-                {
-                    Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
-                    _shotCounter = _fireRate;
-                }
+                Shoot();
             }
         }
         else
