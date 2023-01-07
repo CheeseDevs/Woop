@@ -6,12 +6,14 @@ public class AmmoPickUp : MonoBehaviour, IPickable
 {
     public void DestroySelf()
     {
-        throw new System.NotImplementedException();
+        // add sound and effects
+        Destroy(gameObject);
     }
 
     public void GiveEffect()
     {
-        Debug.Log("Adding Ammo");
+        PlayerMovement.instance.AddAmmo();
+        DestroySelf();
     }
 
     // Start is called before the first frame update

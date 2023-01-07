@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
 
     public static PlayerMovement instance;
+
+
 
     public Rigidbody2D theRB;
 
@@ -108,5 +111,10 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                 Debug.Log("health full");
             }
         }
+    }
+
+    internal void AddAmmo()
+    {
+        currentAmmo = currentAmmo + 10;
     }
 }
