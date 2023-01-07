@@ -14,7 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 mouseInput;
 
     public float mouseSensitivity = 1f;
-    public Transform viewCam;
+    public Camera viewCam;
+
+    public GameObject bulletImpact;
+    public int currentAmmo;
+
+    public Animator gunAnim;
 
     private void Awake()
     {
@@ -33,6 +38,27 @@ public class PlayerMovement : MonoBehaviour
            //Camera Movement 
         moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
-        viewCam.localRotation = Quaternion.Euler(viewCam.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
+        viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
+            //Shooting
+        if(Input.GetMouseButtonDown(0))
+        {   
+            if(currentAmmo > 0)
+            {
+                Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Debug.Log("Shooting at" + hit.transform.name);
+                    Instantiate(bulletImpact, hit.point, transform.rotation);
+                }
+                else
+                {
+                    Debug.Log("Nothing");
+                }
+                currentAmmo--;
+                gunAnim.SetTrigger("Shoot");
+            }
+        }
+
     }
 }
