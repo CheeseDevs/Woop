@@ -13,7 +13,7 @@ public class HealthPickup : MonoBehaviour, IPickable
     public void GiveEffect()
     {
         PlayerMovement.instance.AddHealth(30f);
-        DestroySelf();
+        DestroySelf(); 
     }
 
     // Start is called before the first frame update
