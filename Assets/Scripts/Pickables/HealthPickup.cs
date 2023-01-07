@@ -6,12 +6,14 @@ public class HealthPickup : MonoBehaviour, IPickable
 {
     public void DestroySelf()
     {
-        throw new System.NotImplementedException();
+        // add sound and effects
+        Destroy(gameObject);
     }
 
     public void GiveEffect()
     {
-        Debug.Log("Picked up");
+        PlayerMovement.instance.AddHealth(30f);
+        DestroySelf(); 
     }
 
     // Start is called before the first frame update

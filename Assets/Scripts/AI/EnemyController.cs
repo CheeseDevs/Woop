@@ -43,9 +43,15 @@ public class EnemyController : MonoBehaviour, IDamagable
             }
             else
             {
-                break;
+                Die();
             }
         }
+    }
+
+    private void Die()
+    {
+        // Instantiate explosion
+        Destroy(gameObject);
     }
 
     // Start is called before the first frame update
