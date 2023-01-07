@@ -32,9 +32,10 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("hit player");
+            Debug.Log("Dealing player");
+            PlayerMovement.instance.TakeDamage(_damageAmouunt);
+            Destroy(gameObject);
         }
-        Destroy(this);
         
     }
 }

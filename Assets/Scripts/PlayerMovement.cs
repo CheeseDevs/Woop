@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamagable
 {
+
+    [SerializeField]
+    private float _curretntHealth;
+    [SerializeField]
+    private float _maxHealth = 100f;
+
+
+
     public static PlayerMovement instance;
 
     public Rigidbody2D theRB;
@@ -18,8 +26,10 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject bulletImpact;
     public int currentAmmo;
-
     public Animator gunAnim;
+
+
+
 
     private void Awake()
     {
@@ -27,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void start(){
+
+        _curretntHealth = _maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
 
     }
@@ -55,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Debug.Log("Shooting at" + hit.transform.name);
                     Instantiate(bulletImpact, hit.point, transform.rotation);
+                    if (hit.transform.CompareTag("Enemy"))
+                    {
+                        hit.transform.parent.GetComponent<EnemyController>().TakeDamage(30);
+                    }
                 }
                 else
                 {
@@ -65,5 +81,32 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+            if (_curretntHealth > 0)
+            {
+                _curretntHealth = _curretntHealth - damage;
+            }
+            else
+            {
+                Debug.Log("dead");
+            }
+    }
+
+    public void AddHealth(float heal)
+    {
+        for (int i = 0; i < heal; i++)
+        {
+            if (_curretntHealth <= _maxHealth)
+            {
+                _curretntHealth = _curretntHealth + 1;
+            }
+            else
+            {
+                Debug.Log("health full");
+            }
+        }
     }
 }
