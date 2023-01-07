@@ -7,6 +7,9 @@ public class Door : MonoBehaviour
 
     [SerializeField] private bool _isRedRequired;
     [SerializeField] private bool _isGreenRequired;
+    [SerializeField] private bool _isPurpleRequired;
+    [SerializeField] private bool _isBlueRequired;
+
 
     public Transform doorModel;
     public GameObject colObject;
@@ -71,6 +74,20 @@ public class Door : MonoBehaviour
         else if (_isGreenRequired)
         {
             if (hasKey.HasGreenKey)
+            {
+                shouldOpen = true;
+            }
+        }
+        else if (_isPurpleRequired)
+        {
+            if (hasKey.HasPurpleKey)
+            {
+                shouldOpen = true;
+            }
+        }
+        else if (_isBlueRequired)
+        {
+            if (hasKey.HasBlueKey)
             {
                 shouldOpen = true;
             }

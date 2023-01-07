@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isRedRequired: 0
-  _isGreenRequired: 1
+  _isGreenRequired: 0
   doorModel: {fileID: 7985847596533894387}
   colObject: {fileID: 3146286446735237981}
   openSpeed: 2
