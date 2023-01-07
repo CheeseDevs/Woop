@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389d2e2407aa1e0489adef5736f463f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isRedRequired: 0
+  _isGreenRequired: 1
   doorModel: {fileID: 7985847596533894387}
   colObject: {fileID: 3146286446735237981}
   openSpeed: 2

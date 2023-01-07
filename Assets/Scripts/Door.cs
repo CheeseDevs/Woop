@@ -5,6 +5,9 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
+    [SerializeField] private bool _isRedRequired;
+    [SerializeField] private bool _isGreenRequired;
+
     public Transform doorModel;
     public GameObject colObject;
 
@@ -40,7 +43,7 @@ public class Door : MonoBehaviour
     {   Debug.Log("Triggered");    
         if (other.tag == "Player")
         {
-            shouldOpen = true;
+            CheckKey();
          
         }
 
@@ -53,9 +56,30 @@ public class Door : MonoBehaviour
             shouldOpen = false;
          
         }
-     
-     
      }
+
+    private void CheckKey()
+    {
+        PlayerInventory hasKey = PlayerMovement.instance.GetComponent<PlayerInventory>();
+        if (_isRedRequired)
+        {
+            if (hasKey.HasRedKey)
+            {
+                shouldOpen = true;
+            }
+        }
+        else if (_isGreenRequired)
+        {
+            if (hasKey.HasGreenKey)
+            {
+                shouldOpen = true;
+            }
+        }
+        else
+        {
+            shouldOpen = true;
+        }
+    }
 }
 
 
