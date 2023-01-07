@@ -135,6 +135,7 @@ MonoBehaviour:
   _isRedRequired: 0
   _isGreenRequired: 0
   _isPurpleRequired: 1
+  _isBlueRequired: 0
   doorModel: {fileID: 7985847596533894387}
   colObject: {fileID: 3146286446735237981}
   openSpeed: 2
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9925a196ccf22a242990368874456ea1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c604763ac8d70e478c5ce6dfe487766, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

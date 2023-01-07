@@ -134,6 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRedRequired: 1
   _isGreenRequired: 0
+  _isPurpleRequired: 0
+  _isBlueRequired: 0
   doorModel: {fileID: 7985847596533894387}
   colObject: {fileID: 3146286446735237981}
   openSpeed: 2
@@ -178,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9925a196ccf22a242990368874456ea1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c604763ac8d70e478c5ce6dfe487766, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -247,15 +249,15 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 06386c6e2c76a424cade2af9cc6ec392, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7dc3f348dbb87af4eb40a3f8e6cfbf72, type: 2}
+      objectReference: {fileID: 2100000, guid: 3544ebc38a2e1014983e4840aaa0edd0, type: 2}
     - target: {fileID: -1504981713932161579, guid: 06386c6e2c76a424cade2af9cc6ec392, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 7dc3f348dbb87af4eb40a3f8e6cfbf72, type: 2}
+      objectReference: {fileID: 2100000, guid: 3544ebc38a2e1014983e4840aaa0edd0, type: 2}
     - target: {fileID: -1504981713932161579, guid: 06386c6e2c76a424cade2af9cc6ec392, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 7dc3f348dbb87af4eb40a3f8e6cfbf72, type: 2}
+      objectReference: {fileID: 2100000, guid: 3544ebc38a2e1014983e4840aaa0edd0, type: 2}
     - target: {fileID: -927199367670048503, guid: 06386c6e2c76a424cade2af9cc6ec392, type: 3}
       propertyPath: m_Name
       value: 4 Side Cube
