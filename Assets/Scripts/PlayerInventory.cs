@@ -8,4 +8,9 @@ public class PlayerInventory : MonoBehaviour
     public bool HasGreenKey;
     public bool HasPurpleKey;
     public bool HasBlueKey;
+
+    private void Start()
+    {
+        CanvasManager.Instance.ClearKeys();
+    }
 }
