@@ -235,7 +235,7 @@ MonoBehaviour:
   _startPoint: {x: 0, y: 0, z: 0}
   _endPoint: {x: 2, y: 0, z: 0}
   _duration: 1
-  _shouldShoot: 0
+  _shouldShoot: 1
   _fireRate: 0.3
   _shotCounter: 0
   _bullet: {fileID: 5738856082951432730, guid: 0dd1733cc08f9404da8fa77e57bf7f8b, type: 3}
