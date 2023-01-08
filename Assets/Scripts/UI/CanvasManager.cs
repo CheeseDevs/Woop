@@ -38,6 +38,7 @@ public class CanvasManager : MonoBehaviour
         else
         {
             _instance = this;
+            healthIndicator.sprite = health1;
         }
     }
 
