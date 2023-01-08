@@ -47,7 +47,11 @@ public class EnemyController : MonoBehaviour, IDamagable
         
         if (_health <= _maxHealth)
         {
-            _health = (_health + damage) % _maxHealth;
+            _health = (_health + damage);
+            if (_health > _maxHealth)
+            {
+                _health = _maxHealth;
+            }
         }
        
     }

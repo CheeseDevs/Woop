@@ -79,15 +79,15 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                     {
                         Debug.Log("Shooting at" + hit.transform.name);
                         Instantiate(bulletImpact, hit.point, transform.rotation);
-                        if (hit.transform.CompareTag("Enemy"))
+                        if (hit.transform.CompareTag("Enemy") && GameState.isStandard)
                         {
                             hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
                             
                         }
-                        //else 
-                        //{
-                        //    hit.transform.parent.GetComponent<IDamagable>().TakeDamage(-15);
-                        //}
+                        else 
+                        {
+                           hit.transform.parent.GetComponent<IDamagable>().Heal(-15);
+                        }
                     }
                     else
                     {
@@ -161,6 +161,10 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         // }
     }
 
+    public void Heal(float damage)
+    {
+        
+    }
     internal void AddAmmo()
     {
         currentAmmo = currentAmmo + 10;
