@@ -8,7 +8,9 @@ public class FloatingEnemy : MonoBehaviour, IDamagable
     [SerializeField]
     private float _speed;
     [SerializeField]
-    private float _hp;
+    private float _health;
+    [SerializeField]
+    private float _maxHealth = 100f;
     [SerializeField]
     private float _damage;
     [SerializeField]
