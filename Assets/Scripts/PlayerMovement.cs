@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public static bool isDead;
 
     public GameObject deathMenu;
+    public GameObject hud;
 
     private void Awake()
     {
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                         if (hit.transform.CompareTag("Enemy"))
                         {
                             hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
+                            
                         }
                     }
                     else
@@ -85,6 +87,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                         Debug.Log("Nothing");
                     }
                     currentAmmo--;
+                    hud.GetComponent<CanvasManager>().UpdateAmmo(currentAmmo);
                     gunAnim.SetTrigger("Shoot");
                 }
             }
@@ -112,6 +115,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         if (_currentHealth > 0)
         {
             _currentHealth = _currentHealth - damage;
+            hud.GetComponent<CanvasManager>().UpdateHealth(_currentHealth);
         }
         else
         {
@@ -121,21 +125,32 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     public void AddHealth(float heal)
     {
-        for (int i = 0; i < heal; i++)
+        if (_currentHealth <= _maxHealth)
         {
-            if (_currentHealth <= _maxHealth)
-            {
-                _currentHealth = _currentHealth + 1;
-            }
-            else
-            {
-                Debug.Log("health full");
-            }
+            _currentHealth = _currentHealth + heal;
+            hud.GetComponent<CanvasManager>().UpdateHealth(_currentHealth);
         }
+        else
+        {
+            Debug.Log("Health Full");
+        }
+        // for (int i = 0; i < heal; i++)
+        // {
+        //     if (_currentHealth <= _maxHealth)
+        //     {
+        //         _currentHealth = _currentHealth + 1;
+
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("health full");
+        //     }
+        // }
     }
 
     internal void AddAmmo()
     {
         currentAmmo = currentAmmo + 10;
+        hud.GetComponent<CanvasManager>().UpdateAmmo(currentAmmo);
     }
 }

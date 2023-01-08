@@ -248,7 +248,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 462617581}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -385,7 +385,7 @@ RectTransform:
   m_Children:
   - {fileID: 818341330}
   m_Father: {fileID: 462617581}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -789,12 +789,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 869472536}
   - {fileID: 2043965144}
   - {fileID: 1358816866}
   - {fileID: 1061970643}
   - {fileID: 89311301}
   - {fileID: 73716253}
+  - {fileID: 869472536}
   m_Father: {fileID: 1785732264}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1125,7 +1125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3575019723806203898, guid: 73cafe8fd45a99a4db7168ba7aeec327, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3575019723806203898, guid: 73cafe8fd45a99a4db7168ba7aeec327, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1514,7 +1514,7 @@ RectTransform:
   m_Children:
   - {fileID: 1702403237}
   m_Father: {fileID: 462617581}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1565,30 +1565,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 479948994}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 462617580}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1785732265}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Instruction
@@ -1966,7 +1942,7 @@ RectTransform:
   m_Children:
   - {fileID: 329896157}
   m_Father: {fileID: 462617581}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2576,6 +2552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunAnim: {fileID: 869472537}
+  _Instruction: {fileID: 479948994}
+  _MainMenu: {fileID: 462617580}
 --- !u!1 &2012383037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,7 +2664,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1785732265}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Instruction
+        m_MethodName: GunAnim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2765,7 +2743,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 462617581}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
