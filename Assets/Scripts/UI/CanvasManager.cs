@@ -41,7 +41,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(int healthValue)
+    public void UpdateHealth(float healthValue)
     {
         health.text = healthValue.ToString() + "%";
         UpdateHealthIndicator(healthValue);
@@ -52,12 +52,12 @@ public class CanvasManager : MonoBehaviour
     //     armor.text = armorValue.ToString() + "%";
     // }
 
-    public void UpdateAmmo(int ammoValue)
+    public void UpdateAmmo(float ammoValue)
     {
         ammo.text = ammoValue.ToString();
     }
 
-    public void UpdateHealthIndicator(int healthValue)
+    public void UpdateHealthIndicator(float healthValue)
     {
         if (healthValue >= 66)
         {
