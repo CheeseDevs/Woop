@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour, IDamagable
     [SerializeField]
     private float _health;
     [SerializeField]
+    private float _maxHealth = 100f;
+    [SerializeField]
     private bool _shouldShoot;
     [SerializeField]
     private float _fireRate;
@@ -27,17 +29,27 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        for (int i = 0; i < damage; i++)
+        
+        if (_health >= 0)
         {
-            if (_health >= 0)
-            {
-                _health = _health - 1;
-            }
-            else
-            {
-                Die();
-            }
+            _health = _health - damage;
         }
+
+        else 
+        {
+            Die();
+        }
+       
+    }
+
+    public void Heal(float damage)
+    {
+        
+        if (_health <= _maxHealth)
+        {
+            _health = (_health + damage) % _maxHealth;
+        }
+       
     }
 
     private void Die()

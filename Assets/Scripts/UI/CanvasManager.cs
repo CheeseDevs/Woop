@@ -12,11 +12,14 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI ammo;
 
     public Image healthIndicator;
+    public Image weaponState;
 
     public Sprite health1;
     public Sprite health2;
     public Sprite health3;
     public Sprite health4;
+    public Sprite stdWeapon;
+    public Sprite healWeapon;
 
     public GameObject redKey;
     public GameObject blueKey;
@@ -39,6 +42,19 @@ public class CanvasManager : MonoBehaviour
         {
             _instance = this;
             healthIndicator.sprite = health1;
+        }
+    }
+
+    void Update()
+    {
+        if (GameState.isStandard)
+        {
+            weaponState.sprite = stdWeapon;
+        }
+
+        else
+        {
+            weaponState.sprite = healWeapon;
         }
     }
 
