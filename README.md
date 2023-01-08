@@ -9,3 +9,4 @@ Tip: All hazards are not dangerous.
 
 
 How to build: Clone the main branch, open in unity. Go to file, select build, hit build, set different path for build folder
+For the convenience, Build for windows is on the branch "Build". Clone it, extract and play
