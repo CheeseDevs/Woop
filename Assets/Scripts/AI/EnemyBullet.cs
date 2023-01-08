@@ -36,6 +36,10 @@ public class EnemyBullet : MonoBehaviour
             PlayerMovement.instance.TakeDamage(_damageAmouunt);
             Destroy(gameObject);
         }
+        if (!collision.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
         
     }
 }

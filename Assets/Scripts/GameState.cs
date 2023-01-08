@@ -30,7 +30,7 @@ public class GameState : MonoBehaviour
     {
         Debug.Log("Timer: " + timer);
         Debug.Log("Standard: " + isStandard);
-        timer = timer + Time.deltaTime % 20;
+        timer =( timer + Time.deltaTime) % 20;
 
         if (timer <= 14)
         {
