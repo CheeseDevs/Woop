@@ -16,8 +16,8 @@ public class EnemyController : MonoBehaviour, IDamagable
     private GameObject _bullet;
     [SerializeField]
     public Transform _firePoint;
-
-
+    [SerializeField]
+    private AudioSource deathSoundEffect;
 
 
     public float playerRange = 10f;
@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     private void Die()
     {
         // Instantiate explosion
+        deathSoundEffect.Play();
         Destroy(gameObject);
     }
 

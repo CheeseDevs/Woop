@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AmmoPickUp : MonoBehaviour, IPickable
 {
+
     public void DestroySelf()
     {
         // add sound and effects
@@ -11,7 +12,7 @@ public class AmmoPickUp : MonoBehaviour, IPickable
     }
 
     public void GiveEffect()
-    {
+    {   
         PlayerMovement.instance.AddAmmo();
         DestroySelf();
     }
