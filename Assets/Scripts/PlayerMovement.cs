@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                         if (hit.transform.CompareTag("Enemy"))
                         {
                             hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
+                            
                         }
                     }
                     else
@@ -86,6 +87,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                         Debug.Log("Nothing");
                     }
                     currentAmmo--;
+                    hud.GetComponent<CanvasManager>().UpdateAmmo(currentAmmo);
                     gunAnim.SetTrigger("Shoot");
                 }
             }
