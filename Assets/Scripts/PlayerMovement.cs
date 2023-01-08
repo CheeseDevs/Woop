@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         if (_currentHealth > 0)
         {
             _currentHealth = _currentHealth - damage;
-            hud.
+            // hud.
         }
         else
         {
