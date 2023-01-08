@@ -6,6 +6,7 @@ public class LavaGround : MonoBehaviour
 {
 
     [SerializeField] private float _damageAmount = 5f;
+    [SerializeField] AudioSource lavaSoundEffect;
     private float _waitTime = .3f;
     private float _counter = 0f;
     // Start is called before the first frame update
@@ -38,7 +39,8 @@ public class LavaGround : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {
+        {   
+            lavaSoundEffect.Play();
             DealDamage();
             Debug.Log("damaging player");
         }

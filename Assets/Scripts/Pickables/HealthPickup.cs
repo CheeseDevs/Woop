@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour, IPickable
 {
+    [SerializeField]
+    private AudioSource pickupSoundEffect;
+
     public void DestroySelf()
     {
         // add sound and effects
+        pickupSoundEffect.Play();
         Destroy(gameObject);
     }
 
     public void GiveEffect()
     {
+        pickupSoundEffect.Play();
         PlayerMovement.instance.AddHealth(30f);
         DestroySelf(); 
     }
@@ -26,12 +31,14 @@ public class HealthPickup : MonoBehaviour, IPickable
     void Update()
     {
         
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {
+        {   
+            pickupSoundEffect.Play();
             GiveEffect();
         }
     }

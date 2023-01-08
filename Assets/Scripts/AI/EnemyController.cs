@@ -43,7 +43,6 @@ public class EnemyController : MonoBehaviour, IDamagable
     private void Die()
     {
         // Instantiate explosion
-        deathSoundEffect.Play();
         Destroy(gameObject);
     }
 
@@ -56,6 +55,10 @@ public class EnemyController : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
+        if (_health <=0)
+        {
+            deathSoundEffect.Play();
+        }
         Move();
     }
 
