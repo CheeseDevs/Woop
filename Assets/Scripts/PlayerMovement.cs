@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     private float _currentHealth;
     [SerializeField]
     private float _maxHealth = 100f;
-
+    [SerializeField]
+    private AudioSource shootSoundEffect;
+    
 
 
     public static PlayerMovement instance;
@@ -50,17 +52,14 @@ public class PlayerMovement : MonoBehaviour, IDamagable
        
         _currentHealth = _maxHealth;
         
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
     void Update()
-    {
-
+    {       
         Debug.Log(_currentHealth);
         if (!PauseMenu.Paused && !isDead)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
             //Player Movement
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector3 moveHorizontal = transform.up * -moveInput.x;
@@ -76,6 +75,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
             {   
                 if(currentAmmo > 0)
                 {
+                    shootSoundEffect.Play();
                     Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
@@ -116,14 +116,10 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         else if (isDead)
         {
             theRB.velocity = Vector3.zero;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             deathMenu.GetComponent<DeathMenu>().toggleDeathMenu(); 
         }
         else 
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             theRB.velocity = Vector3.zero;
         }
         
@@ -170,7 +166,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     public void Heal(float damage)
     {
-        
+
     }
     internal void AddAmmo()
     {
