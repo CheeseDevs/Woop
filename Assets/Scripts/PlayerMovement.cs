@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     private float _currentHealth;
     [SerializeField]
     private float _maxHealth = 100f;
-
+    [SerializeField]
+    private AudioSource shootSoundEffect;
 
 
     public static PlayerMovement instance;
@@ -70,6 +71,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
             {   
                 if(currentAmmo > 0)
                 {
+                    shootSoundEffect.Play();
                     Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
@@ -114,6 +116,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     {
         if (_currentHealth > 0)
         {
+
             _currentHealth = _currentHealth - damage;
             hud.GetComponent<CanvasManager>().UpdateHealth(_currentHealth);
         }
