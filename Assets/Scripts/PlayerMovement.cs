@@ -36,11 +36,14 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     public GameObject deathMenu;
     public GameObject hud;
+    public GameObject[] enemmies;
+
 
     private void Awake()
     {
         instance = this;
         isDead = false;
+        enemmies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void start(){
@@ -76,15 +79,15 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                     {
                         Debug.Log("Shooting at" + hit.transform.name);
                         Instantiate(bulletImpact, hit.point, transform.rotation);
-                        if (hit.transform.CompareTag("Enemy") && GameState.isStandard)
+                        if (hit.transform.CompareTag("Enemy"))
                         {
                             hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
                             
                         }
-                        else 
-                        {
-                            hit.transform.parent.GetComponent<IDamagable>().TakeDamage(-15);
-                        }
+                        //else 
+                        //{
+                        //    hit.transform.parent.GetComponent<IDamagable>().TakeDamage(-15);
+                        //}
                     }
                     else
                     {
@@ -99,6 +102,12 @@ public class PlayerMovement : MonoBehaviour, IDamagable
             if (_currentHealth <= 0)
             {
                 isDead = true;  
+            }
+
+            if (enemmies.Length <= 0)
+            {
+                theRB.velocity = Vector3.zero;
+                deathMenu.GetComponent<DeathMenu>().toggleDeathMenu();
             }
         }
         else if (isDead)
