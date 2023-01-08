@@ -8,7 +8,9 @@ public class FloatingEnemy : MonoBehaviour, IDamagable
     [SerializeField]
     private float _speed;
     [SerializeField]
-    private float _hp;
+    private float _health;
+    [SerializeField]
+    private float _maxHealth = 100f;
     [SerializeField]
     private float _damage;
     [SerializeField]
@@ -79,14 +81,26 @@ public class FloatingEnemy : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         
-        if (_hp <= 0)
+        if (_health >= 0)
+        {
+            _health = _health - damage;
+        }
+
+        else 
         {
             Die();
         }
-        else
+       
+    }
+
+    public void Heal(float damage)
+    {
+        
+        if (_health <= _maxHealth)
         {
-            _hp = _hp - damage;
+            _health = (_health + damage) % _maxHealth;
         }
+       
     }
 
     IEnumerator RepeatLerp()

@@ -37,11 +37,14 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     public GameObject deathMenu;
     public GameObject hud;
+    public GameObject[] enemmies;
+
 
     private void Awake()
     {
         instance = this;
         isDead = false;
+        enemmies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void start(){
@@ -83,6 +86,10 @@ public class PlayerMovement : MonoBehaviour, IDamagable
                             hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
                             
                         }
+                        //else 
+                        //{
+                        //    hit.transform.parent.GetComponent<IDamagable>().TakeDamage(-15);
+                        //}
                     }
                     else
                     {
@@ -97,6 +104,12 @@ public class PlayerMovement : MonoBehaviour, IDamagable
             if (_currentHealth <= 0)
             {
                 isDead = true;  
+            }
+
+            if (enemmies.Length <= 0)
+            {
+                theRB.velocity = Vector3.zero;
+                deathMenu.GetComponent<DeathMenu>().toggleDeathMenu();
             }
         }
         else if (isDead)
@@ -130,7 +143,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     {
         if (_currentHealth <= _maxHealth)
         {
-            _currentHealth = _currentHealth + heal;
+            _currentHealth = (_currentHealth + heal) % _maxHealth;
             hud.GetComponent<CanvasManager>().UpdateHealth(_currentHealth);
         }
         else

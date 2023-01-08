@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator HowToPlay()
     {
-        GunAnim();
+        // GunAnim();
         yield return new WaitForSeconds(.2f);
         Debug.Log("How to");
         _Instruction.SetActive(true);
@@ -38,13 +38,13 @@ public class MainMenu : MonoBehaviour
     }
     public IEnumerator PlayGame()
     {
-        GunAnim();
+        // GunAnim();
         yield return new WaitForSeconds(.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public IEnumerator ExitGame()
     {
-        GunAnim();
+        // GunAnim();
         yield return new WaitForSeconds(.2f);
         Application.Quit();
     }
