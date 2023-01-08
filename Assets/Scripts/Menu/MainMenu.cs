@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+
+    private void Update()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public Animator gunAnim;
     [SerializeField] GameObject _Instruction;
     [SerializeField] GameObject _MainMenu;
