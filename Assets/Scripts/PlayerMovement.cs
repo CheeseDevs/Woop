@@ -5,19 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IDamagable
 {
-
+    #region playerAttribs
     [SerializeField]
     private float _currentHealth;
     [SerializeField]
     private float _maxHealth = 100f;
     [SerializeField]
     private AudioSource shootSoundEffect;
-    
-
-
-    public static PlayerMovement instance;
-
-
 
     public Rigidbody2D theRB;
 
@@ -39,7 +33,14 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public GameObject deathMenu;
     public GameObject hud;
     public GameObject[] enemmies;
+    #endregion
 
+
+
+
+
+
+    public static PlayerMovement instance;
 
     private void Awake()
     {
@@ -49,61 +50,69 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     }
 
     void start(){
-       
         _currentHealth = _maxHealth;
-        
         Cursor.lockState = CursorLockMode.Locked;
-
     }
+
+    void Move()
+    {
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector3 moveHorizontal = transform.up * -moveInput.x;
+        Vector3 moveVertical = transform.right * moveInput.y;
+        theRB.velocity = (moveHorizontal + moveVertical) * moveSpeed;
+        //Camera Movement 
+        moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
+    //    viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
+    }
+
+    void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (currentAmmo > 0)
+            {
+                shootSoundEffect.Play();
+                Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Debug.Log("Shooting at" + hit.transform.name);
+                    Instantiate(bulletImpact, hit.point, transform.rotation);
+                    if (hit.transform.CompareTag("Enemy") && GameState.isStandard)
+                    {
+                        hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
+
+                    }
+                    else if(hit.transform.CompareTag("Enemy"))
+                    {
+                        hit.transform.parent.GetComponent<IDamagable>().Heal(-15);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Nothing");
+                }
+                currentAmmo--;
+                hud.GetComponent<CanvasManager>().UpdateAmmo(currentAmmo);
+                gunAnim.SetTrigger("Shoot");
+            }
+        }
+    }
+
     void Update()
     {
-        
         Debug.Log(_currentHealth);
         if (!PauseMenu.Paused && !isDead)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             //Player Movement
-            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            Vector3 moveHorizontal = transform.up * -moveInput.x;
-            Vector3 moveVertical = transform.right * moveInput.y;
-            theRB.velocity = (moveHorizontal+moveVertical) * moveSpeed;
-            //Camera Movement 
-            moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - moveInput.x);
-            viewCam.transform.localRotation = Quaternion.Euler(viewCam.transform.localRotation.eulerAngles + new Vector3(0f, moveInput.y, 0f));
-            
+            Move();
+
             //Shooting
-            if(Input.GetMouseButtonDown(0))
-            {   
-                if(currentAmmo > 0)
-                {
-                    shootSoundEffect.Play();
-                    Ray ray = viewCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        Debug.Log("Shooting at" + hit.transform.name);
-                        Instantiate(bulletImpact, hit.point, transform.rotation);
-                        if (hit.transform.CompareTag("Enemy") && GameState.isStandard)
-                        {
-                            hit.transform.parent.GetComponent<IDamagable>().TakeDamage(30);
-                            
-                        }
-                        else 
-                        {
-                           hit.transform.parent.GetComponent<IDamagable>().Heal(-15);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Nothing");
-                    }
-                    currentAmmo--;
-                    hud.GetComponent<CanvasManager>().UpdateAmmo(currentAmmo);
-                    gunAnim.SetTrigger("Shoot");
-                }
-            }
+            Shoot();
+            
 
             if (_currentHealth <= 0)
             {
@@ -130,8 +139,6 @@ public class PlayerMovement : MonoBehaviour, IDamagable
             Cursor.visible = true;
             theRB.velocity = Vector3.zero;
         }
-        
-
     }
 
     public void TakeDamage(float damage)
@@ -158,24 +165,13 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         {
             Debug.Log("Health Full");
         }
-        // for (int i = 0; i < heal; i++)
-        // {
-        //     if (_currentHealth <= _maxHealth)
-        //     {
-        //         _currentHealth = _currentHealth + 1;
-
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("health full");
-        //     }
-        // }
     }
 
     public void Heal(float damage)
     {
-
+        throw new NotImplementedException();
     }
+
     internal void AddAmmo()
     {
         currentAmmo = currentAmmo + 10;
