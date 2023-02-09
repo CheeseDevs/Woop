@@ -130,7 +130,7 @@ public class FloatingEnemy : MonoBehaviour, IDamagable
         if (_shouldShoot)
         {
             _shotCounter -= Time.deltaTime;
-            if (_shotCounter <= 0)
+            if (_shotCounter <= 0 && Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) <= 15)
             {
                 Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
                 _shotCounter = _fireRate;

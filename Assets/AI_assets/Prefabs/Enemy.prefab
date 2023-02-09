@@ -209,13 +209,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 60
+  _maxHealth: 100
   _shouldShoot: 1
   _fireRate: 0.5
   _shotCounter: 0
   _bullet: {fileID: 5738856082951432730, guid: 0dd1733cc08f9404da8fa77e57bf7f8b, type: 3}
   _firePoint: {fileID: 1264510438}
-  playerRange: 3
-  speed: 0.3
+  playerRange: 10
+  speed: 0.2
   rb: {fileID: 8514918763292134920}
 --- !u!50 &8514918763292134920
 Rigidbody2D:
