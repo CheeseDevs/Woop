@@ -56,10 +56,13 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     }
     void Update()
-    {       
+    {
+        
         Debug.Log(_currentHealth);
         if (!PauseMenu.Paused && !isDead)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             //Player Movement
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector3 moveHorizontal = transform.up * -moveInput.x;
@@ -109,17 +112,22 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
             if (enemmies.Length <= 0)
             {
+
                 theRB.velocity = Vector3.zero;
                 deathMenu.GetComponent<DeathMenu>().toggleDeathMenu();
             }
         }
         else if (isDead)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             theRB.velocity = Vector3.zero;
             deathMenu.GetComponent<DeathMenu>().toggleDeathMenu(); 
         }
         else 
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             theRB.velocity = Vector3.zero;
         }
         
