@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public GameObject deathMenu;
     public GameObject hud;
     public GameObject[] enemmies;
+    public Animator camAnim;
     #endregion
 
 
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     void start(){
         _currentHealth = _maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     void Move()
@@ -102,7 +104,17 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     void Update()
     {
-        Debug.Log(_currentHealth);
+
+        if (theRB.velocity.magnitude==0)
+        {
+            camAnim.SetBool("IsWalking", false);
+        }
+        else
+        {
+            camAnim.SetBool("IsWalking", true);
+        }
+
+
         if (!PauseMenu.Paused && !isDead)
         {
             Cursor.lockState = CursorLockMode.Locked;

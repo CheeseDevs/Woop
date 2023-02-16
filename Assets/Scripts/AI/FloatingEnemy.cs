@@ -122,7 +122,6 @@ public class FloatingEnemy : MonoBehaviour, IDamagable
         _endPoint = _startPoint;
         _startPoint = temp;
         _reached = true;
-        Debug.Log(_endPoint + "      "+ _startPoint);
     }
 
     public void Shoot()
