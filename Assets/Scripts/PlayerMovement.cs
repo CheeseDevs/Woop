@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     public GameObject deathMenu;
     public GameObject hud;
     public GameObject[] enemmies;
-    public Animator camAnim;
+    public CameraControl cameraControl;
     #endregion
 
 
@@ -61,6 +61,15 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector3 moveHorizontal = transform.up * -moveInput.x;
         Vector3 moveVertical = transform.right * moveInput.y;
+        if (moveInput.x == 1)
+        {
+            Debug.Log("X " + moveInput.x);
+            cameraControl.TiltRight();
+        }
+        else if (moveInput.x == -1)
+        {
+            cameraControl.TiltLeft();
+        }
         theRB.velocity = (moveHorizontal + moveVertical) * moveSpeed;
         //Camera Movement 
         moveInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
@@ -105,14 +114,14 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     void Update()
     {
 
-        if (theRB.velocity.magnitude==0)
-        {
-            camAnim.SetBool("IsWalking", false);
-        }
-        else
-        {
-            camAnim.SetBool("IsWalking", true);
-        }
+        //if (theRB.velocity.magnitude==0)
+        //{
+        //    camAnim.SetBool("IsWalking", false);
+        //}
+        //else
+        //{
+        //    camAnim.SetBool("IsWalking", true);
+        //}
 
 
         if (!PauseMenu.Paused && !isDead)
